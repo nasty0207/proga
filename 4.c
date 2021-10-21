@@ -16,6 +16,10 @@ int main()
 
 	semop (semid, &buf, 1);
 	
-	printf ("%d\n", semctl (semid, 0, GETVAL)); 
+	printf ("%d\n", semctl (semid, 0, GETVAL));
+	
+	printf("%i\n", semctl(semid, 0, SETVAL, 5));
+	
+	 
 }
 

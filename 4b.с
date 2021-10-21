@@ -10,12 +10,15 @@ int main()
     	int key = ftok("/home/nastya/Documents/key.c",1);
 	int semid = semget(key, 1, 0666 | IPC_CREAT);
     	
-    	struct sembuf buf = {0, 1, 0};
     	
     	printf ("%d\n", semctl (semid, 0, GETVAL));
 
 	semop (semid, &buf, 1);
 	
-	printf ("%d\n", semctl (semid, 0, GETVAL)); 
+	printf ("%d\n", semctl (semid, 0, GETVAL));
+	
+	printf("%i\n", semctl(sem, 0, SETVAL, 5));
+	
+	 
 }
 

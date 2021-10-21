@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/io.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+
+int main()
+
+{
+
+union semun {
+
+int val;
+
+struct semid_ds *buf;
+
+ushort *array;
+
+} arg;
+
+unsigned int num = ftok("/media/artyom/8f17301a-0323-48da-b2bf-7b56fd954be6/MIPT/seminar 7/2.c", 1);
+unsigned int ful = semget(num, 1, IPC_CREAT|0666);
+struct sembuf* arr = calloc(3, sizeof(short));
+arr[0].sem_num = 0;
+arr[0].sem_op = 1;
+arr[0].sem_flg = 0;
+//int a = semop(ful, arr, 1);
+arg.val = 10;
+printf("%i\n", semctl(ful, 0, GETVAL, 0));
+printf("%i\n", semctl(ful, 0, SETVAL, arg.val));
+printf("%i\n", semctl(ful, 0, GETVAL, 0));
+return 0;
+}

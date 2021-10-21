@@ -7,15 +7,15 @@
 
 int main()
 {
+    	int s;
     	int key = ftok("/home/nastya/Documents/key.c",1);
 	int semid = semget(key, 1, 0666 | IPC_CREAT);
     	
+    	scanf ("%d", &s);
+    
     	struct sembuf buf = {0, 1, 0};
-    	
-    	printf ("%d\n", semctl (semid, 0, GETVAL));
-
 	semop (semid, &buf, 1);
 	
-	printf ("%d\n", semctl (semid, 0, GETVAL)); 
+	return 0;    
 }
 
