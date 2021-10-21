@@ -8,11 +8,7 @@
 
 int main ()
 {
-	int fd = open ("file.FIFO", O_RDWR);
-	char *buf = "Hello, world!";
-	unsigned int count = strlen(buf);
-	int nwritten = write (fd, buf, count);
-	
+	int fd = open ("../file.FIFO", O_RDONLY);
 	int bytes; 
    	char *buf_1 = malloc (15);
    	unsigned int count_1 = 15;
@@ -22,4 +18,5 @@ int main ()
 	printf("%s\n",buf_1);
    	
    	close (fd);
+   	return 0;
 }
